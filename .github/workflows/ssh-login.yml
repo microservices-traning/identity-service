@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Docker Compose
         run: |
-          docker-compose -p identity-service pull
+          docker build -t huyha25062000/identity-service:latest .
           docker-compose -p identity-service stop
           docker-compose -p identity-service down
           docker-compose -p identity-service up -d
