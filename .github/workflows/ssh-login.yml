@@ -9,20 +9,24 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
-      - name: Executing remote ssh commands using password
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: 103.82.25.94
-          username: root
-          password: KYo0p3hn5Rp1h91C
-          port: 22
-          script: whoami
+      - name: Install SSH client
+        run: sudo apt-get install -y ssh
 
-      - name: Pull Source
-        run: sudo bash -c 'cd /root' && cd /root && git clone https://github.com/microservices-traning/identity-service.git && pwd
+      - name: SSH to cloud server and clone repository
+        run: |
+          sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
+          && pwd
 
-      - name: Cd
-        run: cd identity-service
+      - name: Pull Source & Checkout
+        run: |
+          sudo bash -c 'cd /root' && cd /root
+          && git clone https://github.com/microservices-traning/identity-service.git 
+          && pwd
+          && cd identity-service
 
       - name: Run Docker Compose
-        run: docker-compose -p identity-service pull && docker-compose -p identity-service stop && docker-compose -p identity-service down && docker-compose -p identity-service up -d
+        run: |
+          docker-compose -p identity-service pull &&
+          docker-compose -p identity-service stop  &&
+          docker-compose -p identity-service down  &&
+          docker-compose -p identity-service up -d
