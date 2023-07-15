@@ -1,0 +1,24 @@
+services:
+  app:
+    image: huyha25062000/identity-service:latest
+    environment:
+      - MYSQL_URL=jdbc:mysql://mysql:3306/identity_service?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+    #      - SPRING_LIQUIBASE_URL=jdbc:mysql://mysql:3306/identity-service?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    #      - SPRING_LIQUIBASE_USER=root
+    #      - SPRING_LIQUIBASE_PASSWORD=123456
+    ports:
+      - 8081:8081
+    expose:
+      - 8081
+    healthcheck:
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      - mysql
+  mysql:
+    extends:
+      file: ./mysql.yml
+      service: mysql

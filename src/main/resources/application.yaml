@@ -1,7 +1,30 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/identity_service
-    username: root
-    password: FormosVN@123
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/identity_service}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:FormosVN@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: hikari-id
+      auto-commit: true
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+      minimum-idle: 3
+      maximum-pool-size: 20
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate.format_sql: true
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 server:
-  port: 8081
+  port: 8080
