@@ -20,8 +20,8 @@ jobs:
       - name: Pull Source & Checkout
         run: |
           git clone https://github.com/microservices-traning/identity-service.git
-          pwd
-          cd identity-service
+          pwd && ls -lta
+          cd identity-service && pwd && ls -lta
 
       - name: Run Docker Compose
         run: |
