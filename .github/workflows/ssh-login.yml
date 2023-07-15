@@ -19,7 +19,7 @@ jobs:
         run: sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
 
       - name: Pull Source
-        run: git clone https://github.com/microservices-traning/identity-service.git
+        run: git clone https://github.com/microservices-traning/identity-service.git && cd identity-service
 
       - name: Run Docker Compose
         run: docker-compose -p identity-service pull && docker-compose -p identity-service stop && docker-compose -p identity-service down && docker-compose -p identity-service up -d
