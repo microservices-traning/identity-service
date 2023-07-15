@@ -19,10 +19,10 @@ jobs:
 
       - name: Pull Source & Checkout
         run: |
-          sudo bash -c 'cd /root' && cd /root
-          && git clone https://github.com/microservices-traning/identity-service.git 
-          && pwd
-          && cd identity-service
+          sudo bash -c 'cd /root' && cd /root && 
+          git clone https://github.com/microservices-traning/identity-service.git && 
+          pwd && 
+          cd identity-service
 
       - name: Run Docker Compose
         run: |
