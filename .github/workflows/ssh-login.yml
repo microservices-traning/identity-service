@@ -14,8 +14,8 @@ jobs:
 
       - name: SSH to cloud server and clone repository
         run: |
-          sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94 
-          && pwd
+          sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
+          pwd
 
       - name: Pull Source & Checkout
         run: |
