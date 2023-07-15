@@ -19,6 +19,9 @@ jobs:
         run: |
           sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
           pwd
+          sudo su
+          cd /
+          ls -la
 
       - name: Pull Source & Checkout
         run: |
