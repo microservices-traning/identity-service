@@ -19,7 +19,7 @@ jobs:
           script: whoami
 
       - name: Pull Source
-        run: git clone https://github.com/microservices-traning/identity-service.git && pwd
+        run: cd /root && git clone https://github.com/microservices-traning/identity-service.git && pwd
 
       - name: Cd
         run: cd identity-service
