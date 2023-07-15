@@ -1,7 +1,9 @@
 name: SSH Login
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - dev
 jobs:
   ssh:
     runs-on: ubuntu-latest
