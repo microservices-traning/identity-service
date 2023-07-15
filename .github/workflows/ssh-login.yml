@@ -9,14 +9,14 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install SSH client
-        run: sudo apt-get install -y ssh
-
-      - name: Start SSH session
-        run: sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
+      - name: Executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 103.82.25.94
+          username: root
+          password: KYo0p3hn5Rp1h91C
+          port: 22
+          script: whoami
 
       - name: Pull Source
         run: git clone https://github.com/microservices-traning/identity-service.git
