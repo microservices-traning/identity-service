@@ -1,13 +1,13 @@
-name: SSH Login
+name: Deploy Identity Service
 
 on:
   push:
     branches:
       - dev
+
 jobs:
   ssh:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -16,10 +16,13 @@ jobs:
         run: sudo apt-get install -y ssh
 
       - name: Start SSH session
-        run: sshpass -p KYo0p3hn5Rp1h91C ssh root@103.82.25.94
+        run: sshpass -p KYo0p3hn5Rp1h91C ssh -o StrictHostKeyChecking=no root@103.82.25.94
 
       - name: Pull Source
-        run: git clone https://github.com/microservices-traning/identity-service.git && cd identity-service
+        run: git clone https://github.com/microservices-traning/identity-service.git
+
+      - name: Cd
+        run: cd identity-service
 
       - name: Run Docker Compose
         run: docker-compose -p identity-service pull && docker-compose -p identity-service stop && docker-compose -p identity-service down && docker-compose -p identity-service up -d
